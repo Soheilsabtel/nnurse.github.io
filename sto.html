@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        /* Reset some default styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+        }
+
+        /* Container for all views */
+        .container {
+            display: none;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+        }
+
+        .container.active {
+            display: block;
+        }
+
+        /* Centering the container in the screen */
+        .main-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        /* Style input fields and labels */
+        .input-group {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: #6e8efb;
+            outline: none;
+        }
+
+        /* Style the buttons */
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 5px;
+            background: #6e8efb;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #a777e3;
+        }
+
+        /* Style the sign up link */
+        .sign-up-link {
+            display: block;
+            margin-top: 1rem;
+            color: red;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .sign-up-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Welcome page styles */
+        .button-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            height: 600%;
+        }
+
+        .circle-button {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: none;
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: #333;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            border-style: double;
+            border-width: 6px;
+            border-color: red pink yellow green;
+        }
+
+        .circle-button:hover {
+            background: #6e8efb;
+            color: #fff;
+        }
+
+        /* Small circle button styles */
+        .small-circle-button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: #333;
+            font-size: 24px; /* Adjusted size for the icon */
+            cursor: pointer;
+            transition: background 0.3s ease;
+            position: absolute;
+            top: 40px;
+            right: 20px;
+            border-style: double;
+            border-width: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .small-circle-button:hover {
+            background: #6e8efb;
+            color: #fff;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: 250px;
+            height: 100%;
+            position: fixed;
+            right: -250px; /* Initially hidden */
+            top: 0;
+            background: white;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+
+        .sidebar.active {
+            right: 0;
+        }
+        
+        .sidebar img {
+            width: 180px; /* Adjust width as needed */
+            height: auto; /* Maintain aspect ratio */
+            margin-bottom: 1rem; /* Space below the image */
+        }
+        
+        .sidebar .icons {
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            justify-content: flex-start;
+            gap: 3rem;
+        }
+        
+        .sidebar .icons .icon {
+            font-size: 48px; /* Adjust size of the icon */
+            color: #000000; /* Color of the icon */
+            cursor: pointer;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8rem; /* Increased space between icon and text */
+        }
+
+        .sidebar .icons .icon span {
+            font-size: 18px; /* Smaller font size for the text */
+            font-family:'Dancing Script', cursive;
+        }
+
+        .sidebar .icons .icon:hover {
+            color: #6e8efb; /* Hover color of the icon */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <div class="container login-form active">
+            <h2>Login</h2>
+            <form id="loginForm" action="#" method="post">
+                <div class="input-group">
+                    <label for="login-username">Username</label>
+                    <input type="text" id="login-username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+                <a href="#" class="sign-up-link" onclick="toggleForms()">Sign Up</a>
+            </form>
+        </div>
+
+        <div class="container signup-form">
+            <h2>Sign Up</h2>
+            <form id="signupForm" action="#" method="post">
+                <div class="input-group">
+                    <label for="signup-username">Username</label>
+                    <input type="text" id="signup-username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" name="password" required>
+                </div>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+
+        <div class="container welcome-page">
+            <button class="small-circle-button" onclick="toggleSidebar()"><i class="material-icons">home</i></button>
+            <h2>cares</h2>
+            <div class="button-container">
+                <button class="circle-button">سرپایی</button>
+                <button class="circle-button">icu</button>
+                <button class="circle-button">اورژانس </button>
+                <button class="circle-button">ایزوله</button>
+                <button class="circle-button">ترخیص</button>
+                <button class="circle-button">خانگی</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <img src="https://www.lsbn.state.la.us/wp-content/uploads/2022/03/dr-img2-2-600x830.png" alt="Icon">
+        <div class="icons">
+            <div class="icon settings-icon">
+                <span>setting</span><i class="material-icons">settings</i>
+            </div>
+            <div class="icon home-icon">
+              <span>home..</span><i class="material-icons">home</i>
+            </div>
+            <div class="icon group_add-icon" onclick="downloadFile()">
+              <span>more...</span><i class="material-icons">group_add</i>
+            </div>
+            <div class="icon subscriptions-icon" onclick="openVideosWindow()">
+              <span>videos</span><i class="material-icons">subscriptions</i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden anchor for file download -->
+    <a id="fileDownloadLink" href="Rre/base.rar" style="display: none;"></a>
+
+    <script>
+        function toggleForms() {
+            document.querySelector('.login-form').classList.toggle('active');
+            document.querySelector('.signup-form').classList.toggle('active');
+        }
+
+        function getUsers() {
+            return JSON.parse(localStorage.getItem('users')) || [];
+        }
+
+        function saveUser(user) {
+            const users = getUsers();
+            users.push(user);
+            localStorage.setItem('users', JSON.stringify(users));
+        }
+
+        function findUser(username) {
+            const users = getUsers();
+            return users.find(user => user.username === username);
+        }
+
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('signup-username').value;
+            const password = document.getElementById('signup-password').value;
+
+            if (findUser(username)) {
+                alert('Username already exists. Please choose another one.');
+                return;
+            }
+
+            saveUser({ username, password });
+
+            alert('Sign up successful! You can now log in.');
+            toggleForms(); // Switch back to the login form
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+
+            const user = findUser(username);
+
+            if (user && user.password === password) {
+                alert('Login successful!');
+                document.querySelector('.login-form').classList.remove('active');
+                document.querySelector('.welcome-page').classList.add('active'); // Switch to the welcome page
+            } else {
+                alert('Invalid username or password.');
+            }
+        });
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const isClickInsideSidebar = sidebar.contains(event.target);
+            const isClickOnSidebarButton = event.target.closest('.small-circle-button');
+
+            if (!isClickInsideSidebar && !isClickOnSidebarButton && sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        function downloadFile() {
+            const downloadLink = document.getElementById('fileDownloadLink');
+            downloadLink.click();
+        }
+
+        // Function to open videos window
+        function openVideosWindow() {
+            // Change the URL to the actual URL of the videos page
+            const videosUrl = 'videos.html'; // Replace with the actual URL of your videos page
+            window.open(videosUrl, '_blank'); // Open in a new tab/window
+        }
+    </script>
+</body>
+</html>
+
