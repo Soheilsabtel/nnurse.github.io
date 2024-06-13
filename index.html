@@ -249,7 +249,7 @@
         </div>
 
         <div class="container welcome-page">
-            <button class="small-circle-button" onclick="toggleSidebar()"><i class="material-icons">home            </i></button>
+            <button class="small-circle-button" onclick="toggleSidebar()"><i class="material-icons">home</i></button>
             <h2>cares</h2>
             <div class="button-container">
                 <button class="circle-button">سرپایی</button>
@@ -272,7 +272,7 @@
             <div class="icon home-icon">
               <span>home..</span><i class="material-icons">home</i>
             </div>
-            <div class="icon group_add-icon" onclick="downloadFile()">
+                        <div class="icon group_add-icon" onclick="downloadFile()">
               <span>more...</span><i class="material-icons">group_add</i>
             </div>
             <div class="icon subscriptions-icon" onclick="openVideosWindow()">
@@ -285,26 +285,39 @@
     <a id="fileDownloadLink" href="R/base.rar" style="display: none;"></a>
 
     <script>
+        // Toggle between login and sign-up forms
         function toggleForms() {
             document.querySelector('.login-form').classList.toggle('active');
             document.querySelector('.signup-form').classList.toggle('active');
         }
 
+        // Retrieve users from localStorage
         function getUsers() {
             return JSON.parse(localStorage.getItem('users')) || [];
         }
 
+        // Save a new user to localStorage
         function saveUser(user) {
             const users = getUsers();
             users.push(user);
             localStorage.setItem('users', JSON.stringify(users));
         }
 
+        // Find a user by username in localStorage
         function findUser(username) {
             const users = getUsers();
             return users.find(user => user.username === username);
         }
 
+        // Check if the sign-up link should be disabled
+        function checkSignUpDisabled() {
+            const signUpLink = document.querySelector('.sign-up-link');
+            if (localStorage.getItem('signUpDisabled') === 'true') {
+                signUpLink.classList.add('disabled');
+            }
+        }
+
+        // Sign up form submission event handler
         document.getElementById('signupForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const username = document.getElementById('signup-username').value;
@@ -319,13 +332,14 @@
 
             alert('Sign up successful! You can now log in.');
             
-            // Disable the sign-up link
-            const signUpLink = document.querySelector('.sign-up-link');
-            signUpLink.classList.add('disabled');
+            // Disable the sign-up link permanently
+            localStorage.setItem('signUpDisabled', 'true');
+            checkSignUpDisabled();
 
             toggleForms(); // Switch back to the login form
         });
 
+        // Login form submission event handler
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const username = document.getElementById('login-username').value;
@@ -342,11 +356,13 @@
             }
         });
 
+        // Toggle sidebar visibility
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             sidebar.classList.toggle('active');
         }
 
+        // Close sidebar if click is outside of it
         document.addEventListener('click', function(event) {
             const sidebar = document.getElementById('sidebar');
             const isClickInsideSidebar = sidebar.contains(event.target);
@@ -357,6 +373,7 @@
             }
         });
 
+        // Function to trigger file download
         function downloadFile() {
             const downloadLink = document.getElementById('fileDownloadLink');
             downloadLink.click();
@@ -368,6 +385,11 @@
             const videosUrl = 'کرمی.html'; // Replace with the actual URL of your videos page
             window.open(videosUrl, '_blank'); // Open in a new tab/window
         }
+
+        // Check the sign-up link status on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkSignUpDisabled();
+        });
     </script>
 </body>
 </html>
