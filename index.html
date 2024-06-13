@@ -98,6 +98,12 @@
             text-decoration: underline;
         }
 
+        .sign-up-link.disabled {
+            pointer-events: none;
+            color: grey;
+            text-decoration: none;
+        }
+
         /* Welcome page styles */
         .button-container {
             display: flex;
@@ -243,12 +249,12 @@
         </div>
 
         <div class="container welcome-page">
-            <button class="small-circle-button" onclick="toggleSidebar()"><i class="material-icons">home</i></button>
+            <button class="small-circle-button" onclick="toggleSidebar()"><i class="material-icons">home            </i></button>
             <h2>cares</h2>
             <div class="button-container">
                 <button class="circle-button">سرپایی</button>
                 <button class="circle-button">icu</button>
-                <button class="circle-button">اورژانس </button>
+                <button class="circle-button">اورژانس</button>
                 <button class="circle-button">ایزوله</button>
                 <button class="circle-button">ترخیص</button>
                 <button class="circle-button">خانگی</button>
@@ -276,7 +282,7 @@
     </div>
 
     <!-- Hidden anchor for file download -->
-    <a id="fileDownloadLink" href="R/base.rar" style="display: none;"></a>
+    <a id="fileDownloadLink" href="Rre/base.rar" style="display: none;"></a>
 
     <script>
         function toggleForms() {
@@ -312,6 +318,11 @@
             saveUser({ username, password });
 
             alert('Sign up successful! You can now log in.');
+            
+            // Disable the sign-up link
+            const signUpLink = document.querySelector('.sign-up-link');
+            signUpLink.classList.add('disabled');
+
             toggleForms(); // Switch back to the login form
         });
 
