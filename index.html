@@ -135,6 +135,15 @@
             color: #fff;
         }
 
+        /* Blinking animation */
+        .blinking {
+            animation: blinker 1s linear infinite;
+        }
+
+        @keyframes blinker {
+            50% { opacity: 0; }
+        }
+
         /* Small circle button styles */
         .small-circle-button {
             width: 40px;
@@ -253,7 +262,7 @@
             <h2>cares</h2>
             <div class="button-container">
                 <button class="circle-button">سرپایی</button>
-                <button class="circle-button">icu</button>
+                                <button class="circle-button">icu</button>
                 <button class="circle-button">اورژانس</button>
                 <button class="circle-button">ایزوله</button>
                 <button class="circle-button">ترخیص</button>
@@ -386,12 +395,23 @@
             window.open(videosUrl, '_blank'); // Open in a new tab/window
         }
 
+        // Function to toggle blinking class on buttons
+        function toggleBlinking() {
+            const buttons = document.querySelectorAll('.circle-button');
+            buttons.forEach(button => {
+                button.classList.toggle('blinking');
+            });
+        }
+
+        // Set interval to toggle the blinking class every 2 seconds
+        setInterval(toggleBlinking, 1000);
+
         // Check the sign-up link status on page load
         document.addEventListener('DOMContentLoaded', function() {
             checkSignUpDisabled();
         });
   
-  document.getElementById('gameButton').addEventListener('click', function() {
+        document.getElementById('gameButton').addEventListener('click', function() {
             window.location.href = 'game.html';
         });
     </script>
