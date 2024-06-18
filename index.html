@@ -269,8 +269,8 @@
             <div class="icon settings-icon">
                 <span>setting</span><i class="material-icons">settings</i>
             </div>
-            <div class="icon home-icon">
-              <span>home..</span><i class="material-icons">home</i>
+            <div class="icon home-icon" id="gameButton">
+              <span>game..</span><i class="material-icons">home</i>
             </div>
                         <div class="icon group_add-icon" onclick="downloadFile()">
               <span>more...</span><i class="material-icons">group_add</i>
@@ -389,6 +389,10 @@
         // Check the sign-up link status on page load
         document.addEventListener('DOMContentLoaded', function() {
             checkSignUpDisabled();
+        });
+  
+  document.getElementById('gameButton').addEventListener('click', function() {
+            window.location.href = 'game.html';
         });
     </script>
 </body>
