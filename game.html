@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click the Button Game</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+        }
+
+        #clickButton {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Click the Button Game</h1>
+        <button id="clickButton">Click me!</button>
+        <p>Time left: <span id="timeLeft">10</span> seconds</p>
+        <p>Score: <span id="score">0</span></p>
+        <button id="startButton">Start Game</button>
+    </div>
+    <script>
+        let score = 0;
+        let timeLeft = 10;
+        let timer;
+
+        const clickButton = document.getElementById('clickButton');
+        const startButton = document.getElementById('startButton');
+        const scoreDisplay = document.getElementById('score');
+        const timeLeftDisplay = document.getElementById('timeLeft');
+
+        clickButton.addEventListener('click', () => {
+            score++;
+            scoreDisplay.textContent = score;
+        });
+
+        startButton.addEventListener('click', () => {
+            score = 0;
+            timeLeft = 10;
+            scoreDisplay.textContent = score;
+            timeLeftDisplay.textContent = timeLeft;
+            clickButton.style.display = 'inline-block';
+            startButton.disabled = true;
+
+            timer = setInterval(() => {
+                timeLeft--;
+                timeLeftDisplay.textContent = timeLeft;
+
+                if (timeLeft === 0) {
+                    clearInterval(timer);
+                    clickButton.style.display = 'none';
+                    startButton.disabled = false;
+                    alert(`Time's up! Your score is ${score}.`);
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
