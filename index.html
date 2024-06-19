@@ -222,6 +222,25 @@
             color: #6e8efb; /* Hover color of the icon */
         }
 
+        /* Spinner styles */
+        .spinner {
+            position: fixed;
+            top: 50%;
+            left: 30%;
+            transform: translate(-50%, -50%);
+            border: 16px solid #f3f3f3;
+            border-top: 16px solid #6e8efb;
+            border-radius: 50%;
+            width: 90px;
+            height: 90px;
+            animation: spin 2s linear infinite;
+            display: none; /* Initially hidden */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -262,15 +281,14 @@
             <h2>cares</h2>
             <div class="button-container">
                 <button class="circle-button">سرپایی</button>
-                                <button class="circle-button">icu</button>
+                <button class="circle-button">icu</button>
                 <button class="circle-button">اورژانس</button>
                 <button class="circle-button">ایزوله</button>
                 <button class="circle-button">ترخیص</button>
                 <button class="circle-button">خانگی</button>
             </div>
         </div>
-    </div>
-
+    
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <img src="https://www.lsbn.state.la.us/wp-content/uploads/2022/03/dr-img2-2-600x830.png" alt="Icon">
@@ -279,13 +297,13 @@
                 <span>setting</span><i class="material-icons">settings</i>
             </div>
             <div class="icon home-icon" id="gameButton">
-              <span>game..</span><i class="material-icons">home</i>
+                <span>game..</span><i class="material-icons">home</i>
             </div>
-                        <div class="icon group_add-icon" onclick="downloadFile()">
-              <span>more...</span><i class="material-icons">group_add</i>
+            <div class="icon group_add-icon" onclick="downloadFile()">
+                <span>more...</span><i class="material-icons">group_add</i>
             </div>
             <div class="icon subscriptions-icon" onclick="openVideosWindow()">
-              <span>videos</span><i class="material-icons">subscriptions</i>
+                <span>videos</span><i class="material-icons">subscriptions</i>
             </div>
         </div>
     </div>
@@ -293,6 +311,9 @@
     <!-- Hidden anchor for file download -->
     <a id="fileDownloadLink" href="R/base.rar" style="display: none;"></a>
 
+    <!-- Spinner -->
+    <div class="spinner" id="spinner"></div>
+    
     <script>
         // Toggle between login and sign-up forms
         function toggleForms() {
@@ -390,9 +411,24 @@
 
         // Function to open videos window
         function openVideosWindow() {
+            // Display the spinner
+            const spinner = document.getElementById('spinner');
+            spinner.style.display = 'block';
+
             // Change the URL to the actual URL of the videos page
             const videosUrl = 'کرمی.html'; // Replace with the actual URL of your videos page
-            window.open(videosUrl, '_blank'); // Open in a new tab/window
+
+            // Simulate a delay for the spinner to be visible
+            setTimeout(() => {
+                window.location.href = videosUrl;
+                hideSpinner(); // Ensure the spinner is hidden after navigation
+            }, 1000); // Adjust the delay as needed
+        }
+
+        // Function to hide the spinner
+        function hideSpinner() {
+            const spinner = document.getElementById('spinner');
+            spinner.style.display = 'none';
         }
 
         // Function to toggle blinking class on buttons
@@ -410,11 +446,20 @@
         document.addEventListener('DOMContentLoaded', function() {
             checkSignUpDisabled();
         });
-  
+
         document.getElementById('gameButton').addEventListener('click', function() {
             window.location.href = 'game.html';
+        });
+
+        // Handle the popstate event to hide the spinner
+        window.addEventListener('popstate', function() {
+            hideSpinner();
+        });
+
+        // Hide spinner when the page is fully loaded
+        window.addEventListener('load', function() {
+            hideSpinner();
         });
     </script>
 </body>
 </html>
-
