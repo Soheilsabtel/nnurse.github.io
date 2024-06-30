@@ -12,16 +12,14 @@
             margin: 0;
             padding: 0;
             font-family: 'Arial', sans-serif;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             background: linear-gradient(135deg, #6e8efb, #a777e3);
+            overflow-y: auto;
         }
 
         /* Style the container */
         .container {
             text-align: center;
+            padding: 20px;
         }
 
         /* Circle button styles */
@@ -47,67 +45,93 @@
             color: #fff;
         }
   
-  
-/* CSS for button styling */
-.button2 {
-  background-color: black;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 20px;
-  transition-duration: 0.4s;
-  position: center;
-  top: 18px;
-  border-style: double;
-  border-width: 5px;
-  
-}
+        /* CSS for button styling */
+        .button2 {
+            background-color: black;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 20px;
+            transition-duration: 0.4s;
+            position: center;
+            top: 18px;
+            border-style: double;
+            border-width: 5px;
+        }
 
-.button:hover {
-  background-color: #45a049; /* Darker green on hover */
-}
+        .button2:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
     </style>
 </head>
 <body>
-  
-  
     <div class="container">
-      <button class="button2" id="button2">go back</button>
+        <button class="button2" id="button2">go back</button>
         <h2></h2>
-        <!-- Video player -->
+        <!-- First Video player -->
+        <video controls>
+            <source src="your-video-url.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <h3></h3>
+        <!-- Second Video player -->
+        <video controls>
+            <source src="your-video-url.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <h3></h3>
+        <!-- Third Video player -->
         <video controls>
             <source src="your-video-url.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
       
-      <h3></h3>
-      <video controls><source src="your-video-url.mp4" type="video/mp4"</video>
-        
-        
-   
-         
-            
-        <!-- Circle button -->
-        
+        <h3></h3>
+        <!-- Fourth Video player -->
+        <video controls>
+            <source src="your-video-url.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video controls>
+            <source src="your-video-url.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video controls>
+            <source src="your-video-url.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video controls>
+            <source src="your-video-url.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video controls>
+            <source src="your-video-url.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video controls>
+            <source src="your-video-url.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video controls>
+            <source src="your-video-url.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
     </div>
 
-     <script>
+    <script>
         function goBack() {
             window.history.back();
         }
-      
-      
 
-document.getElementById("button2").onclick = function() {
-    window.location.href = "کرمی.html";
-};
-
+        document.getElementById("button2").onclick = function() {
+            window.location.href = "کرمی.html";
+        };
     </script>
 </body>
 </html>
