@@ -79,7 +79,24 @@
             margin-top: 20px; /* Add some spacing above the video */
             border-radius: 10px; /* Optional: add rounded corners */
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1); /* Optional: add a shadow */
+
+             /* Media Query for Portrait Mode */
+        @media (orientation: portrait) {
+            body {
+                flex-direction: column; /* Stack elements vertically */
+            }
+
+            .container {
+                flex-direction: column; /* Stack elements vertically */
+                align-items: center; /* Center content horizontally */
+            }
+
+            .button {
+                position: relative; /* Make position relative for stacking */
+                bottom: auto; /* Remove bottom positioning */
+            }
         }
+        
     </style>
 </head>
 <body>
