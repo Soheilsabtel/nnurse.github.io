@@ -17,11 +17,15 @@
             justify-content: center;
             align-items: center;
             background: linear-gradient(135deg, #6e8efb, #a777e3);
+            flex-direction: column; /* Stack elements vertically */
         }
 
         /* Style the container */
         .container {
             text-align: center;
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            align-items: center; /* Center content horizontally */
         }
 
         /* Circle button styles */
@@ -47,41 +51,38 @@
             color: #fff;
         }
   
-  
-/* CSS for button styling */
-.button {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 20px;
-  transition-duration: 0.4s;
-  position: absolute;
-  bottom: -100px;
-  border-style: double;
-  border-width: 5px;
-  
-}
+        /* CSS for button styling */
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 20px 0 0 0; /* Add top margin only */
+            cursor: pointer;
+            border-radius: 20px;
+            transition-duration: 0.4s;
+            border-style: double;
+            border-width: 5px;
+        }
 
-.button:hover {
-  background-color: #45a049; /* Darker green on hover */
-}
-         /* Video player styles */
+        .button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+  
+        /* Video player styles */
         video {
             width: 260px; /* Set the desired width here */
             max-width: 100%; /* Ensure it doesn't exceed the container width */
             margin-top: 20px; /* Add some spacing above the video */
             border-radius: 10px; /* Optional: add rounded corners */
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1); /* Optional: add a shadow */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: add a shadow */
         }
 
-             /* Media Query for Portrait Mode */
+        /* Media Query for Portrait Mode */
         @media (orientation: portrait) {
             body {
                 flex-direction: column; /* Stack elements vertically */
@@ -97,42 +98,31 @@
                 bottom: auto; /* Remove bottom positioning */
             }
         }
-        
     </style>
 </head>
 <body>
-  
-  <button class="button" id="button1">next page </button>
     <div class="container">
         <h2></h2>
         <!-- Video player -->
         <video controls>
-            <source src="Videos./lv_0_20240724173615.mp4" type="video/mp4">
+            <source src="/storage/emulated/0/DCIM/Camera/lv_0_20240724173834.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
       
-      <h3></h3>
-      <video controls><source src="Videos./lv_0_20240724173834.mp4" type="video/mp4"</video>
+        <h3></h3>
+        <video controls>
+            <source src="/storage/emulated/0/DCIM/Camera/lv_0_20240724173615.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
         
-        
-   
-         
-            
-        <!-- Circle button -->
-        
+        <!-- Button -->
+        <button class="button" id="button1">next page</button>
     </div>
 
     <script>
-        function goBack() {
-            window.history.back();
-        }
-      
-      
-
-document.getElementById("button1").onclick = function() {
-    window.location.href = "video2.html";
-};
-
+        document.getElementById("button1").onclick = function() {
+            window.location.href = "video2.html";
+        };
     </script>
 </body>
 </html>
